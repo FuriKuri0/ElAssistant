@@ -1,15 +1,31 @@
 const { contextBridge, ipcRenderer } = require('electron');
-
+const {MainStore} = require('./store.cjs')
 contextBridge.exposeInMainWorld(
     'electron',
     {
-      doThing: () => ipcRenderer.send('saveFile'),
-    //   anAsyncFunction: async () => 123,
-        test:(callback)=>{
-            ipcRenderer.on('halo',(_,value)=>{
-                callback(value)
+        //音乐播放
+        PlayMusic:(callback)=>{
+            ipcRenderer.on('playMusic',()=>{
+                callback()
             })
         },
-        invoke:()=>  ipcRenderer.invoke('invoke')
+        //展示闹钟组件
+        ShowClock:(callback)=>{
+            ipcRenderer.on('showClock',()=>{
+                callback()
+            })
+        },
+        //数据存储
+        Store:{
+            get:(key)=>{
+               return MainStore.get(key)
+            },
+            set:(key,data)=>{
+                MainStore.set(key,data)
+            },
+            delete:(key)=>{
+                MainStore.delete(key)
+            }
+        }
     }
   )
