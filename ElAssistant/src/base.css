@@ -1,26 +1,13 @@
-body {
-    width: 100vw;
-    height:  100vh;
 
-    /* background: white; */
-    overflow: hidden;
-    border-radius: 100%;
-    -webkit-font-smoothing: antialiased;
-
-}
-html {
-    /* -webkit-app-region:drag; */
-    overflow: hidden;
-}
-
-textarea {
-    --webkit-app-region:no-drag
-}
 * {
     padding: 0;
     box-sizing: border-box;
 }
-
+body{
+    -webkit-font-smoothing: antialiased;
+    margin: 0!important;
+    
+}
 em,
 i {
     font-style: normal

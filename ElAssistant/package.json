@@ -15,9 +15,11 @@
     "antd": "^5.8.6",
     "concurrently": "^8.2.1",
     "electron": "^26.1.0",
+    "node-schedule": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hotkeys": "^2.0.0",
+    "react-router-dom": "^6.15.0",
     "three": "^0.156.0"
   },
   "devDependencies": {

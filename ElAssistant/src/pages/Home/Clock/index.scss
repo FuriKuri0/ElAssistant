@@ -76,6 +76,9 @@
             transform: scale(1);
             transition: all 0.5s;
           }
+          .Clock-input:focus ~ .clockList {
+            height: 200px;
+          }
         
           .clockList {
             background: rgb(13, 17, 23);

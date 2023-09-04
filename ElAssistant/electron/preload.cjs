@@ -1,5 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 const {MainStore} = require('./store.cjs')
+const {setClock} = require('./clock.cjs')
 contextBridge.exposeInMainWorld(
     'electron',
     {
@@ -15,6 +16,12 @@ contextBridge.exposeInMainWorld(
                 callback()
             })
         },
+         //音乐播放
+         PlayClock:(callback)=>{
+            ipcRenderer.on('playClock',()=>{
+                callback()
+            })
+        },
         //数据存储
         Store:{
             get:(key)=>{
@@ -22,9 +29,15 @@ contextBridge.exposeInMainWorld(
             },
             set:(key,data)=>{
                 MainStore.set(key,data)
+                if(key==='clock'){
+                    ipcRenderer.send('refreshClock')
+                }
             },
             delete:(key)=>{
                 MainStore.delete(key)
+                if(key==='clock'){
+                    ipcRenderer.send('refreshClock')
+                }
             }
         }
     }

@@ -5,8 +5,8 @@ import {
   ClockCircleOutlined,
   DeleteOutlined
 } from '@ant-design/icons';
-import MainStore from '../../utils/store'
-import {isValidClockFormat} from '../../utils/index'
+import MainStore from '../../../utils/store';
+import {isValidClockFormat} from '../../../utils/index'
 export default function Clock() {
   const MyInput = useRef('')
   const [clockList,setClockList] = useState([])
@@ -14,6 +14,7 @@ export default function Clock() {
     if(e.keyCode===13){
       let addValue = e.target.value.replace('：',":")
       if(isValidClockFormat(addValue)){
+        //因为原数组是升序的，所以这里可以优化成O（n）的算法
         let newList = [...new Set([...clockList,addValue])].sort((a,b)=>{
           let [a1,a2] = a.split(':')
           let [b1,b2] = b.split(':')

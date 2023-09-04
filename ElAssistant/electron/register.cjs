@@ -1,5 +1,8 @@
 const {mainWindow}= require('./windowManager.cjs');
-const {globalShortcut, ipcMain,BrowserWindow }  = require('electron')
+const {globalShortcut, screen }  = require('electron')
+const windowManager = require('./windowManager.cjs');
+
+const { width: screenWidth } = screen.getPrimaryDisplay().workAreaSize;
    //注册快捷键
     //打开控制台
     globalShortcut.register('CommandOrControl+Shift+I', function () {
@@ -42,7 +45,16 @@ const {globalShortcut, ipcMain,BrowserWindow }  = require('electron')
         mainWindow.window.minimize();
       }
     });
-
+  //最大化
+    // 注册全局快捷键 Shift + L
+    globalShortcut.register('Shift+L', () => {
+      const { width: windowWidth } = mainWindow.window.getBounds();
+    if (windowWidth >screenWidth-50&&windowWidth<screenWidth+50) {
+      mainWindow.window.setFullScreen(false)
+    } else {
+      mainWindow.window.setFullScreen(true)
+    }
+    });
 //播放音乐
 globalShortcut.register('Shift+M', () => {
     // 检查当前窗口的最小化状态
@@ -54,4 +66,12 @@ globalShortcut.register('Shift+C', () => {
   // 检查当前窗口的最小化状态
   mainWindow.window.focus()
   mainWindow.window.webContents.send('showClock')
+});
+//显示黑幕
+globalShortcut.register('Shift+B', () => {
+  if(!windowManager.mainWindow.mask){
+    windowManager.createMask()
+  }else{
+    windowManager.mainWindow.mask.close()
+  }
 });
