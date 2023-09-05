@@ -14,9 +14,15 @@ dependencies:
   concurrently:
     specifier: ^8.2.1
     version: registry.npmmirror.com/concurrently@8.2.1
+  crypto-js:
+    specifier: ^4.1.1
+    version: registry.npmmirror.com/crypto-js@4.1.1
   electron:
     specifier: ^26.1.0
     version: registry.npmmirror.com/electron@26.1.0
+  electron-localshortcut:
+    specifier: ^3.2.1
+    version: registry.npmmirror.com/electron-localshortcut@3.2.1
   node-schedule:
     specifier: ^2.1.1
     version: registry.npmmirror.com/node-schedule@2.1.1
@@ -1574,6 +1580,12 @@ packages:
       which: registry.npmmirror.com/which@2.0.2
     dev: true
 
+  registry.npmmirror.com/crypto-js@4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/crypto-js/-/crypto-js-4.1.1.tgz}
+    name: crypto-js
+    version: 4.1.1
+    dev: false
+
   registry.npmmirror.com/csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/csstype/-/csstype-3.1.2.tgz}
     name: csstype
@@ -1668,6 +1680,25 @@ packages:
     resolution: {integrity: sha512-R8LUSEay/68zE5c8/3BDxiTEvgb4xZTF0RKmAHfiEVN3klfIpXfi2/QCoiWPccVQ0J/ZGdz9OjzL4uJEP/MRAw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dom-align/-/dom-align-1.12.4.tgz}
     name: dom-align
     version: 1.12.4
+    dev: false
+
+  registry.npmmirror.com/electron-is-accelerator@0.1.2:
+    resolution: {integrity: sha512-fLGSAjXZtdn1sbtZxx52+krefmtNuVwnJCV2gNiVt735/ARUboMl8jnNC9fZEqQdlAv2ZrETfmBUsoQci5evJA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-is-accelerator/-/electron-is-accelerator-0.1.2.tgz}
+    name: electron-is-accelerator
+    version: 0.1.2
+    dev: false
+
+  registry.npmmirror.com/electron-localshortcut@3.2.1:
+    resolution: {integrity: sha512-DWvhKv36GsdXKnaFFhEiK8kZZA+24/yFLgtTwJJHc7AFgDjNRIBJZ/jq62Y/dWv9E4ypYwrVWN2bVrCYw1uv7Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-localshortcut/-/electron-localshortcut-3.2.1.tgz}
+    name: electron-localshortcut
+    version: 3.2.1
+    dependencies:
+      debug: registry.npmmirror.com/debug@4.3.4
+      electron-is-accelerator: registry.npmmirror.com/electron-is-accelerator@0.1.2
+      keyboardevent-from-electron-accelerator: registry.npmmirror.com/keyboardevent-from-electron-accelerator@2.0.0
+      keyboardevents-areequal: registry.npmmirror.com/keyboardevents-areequal@0.2.2
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/electron-to-chromium@1.4.508:
@@ -2786,6 +2817,18 @@ packages:
       object.assign: registry.npmmirror.com/object.assign@4.1.4
       object.values: registry.npmmirror.com/object.values@1.1.7
     dev: true
+
+  registry.npmmirror.com/keyboardevent-from-electron-accelerator@2.0.0:
+    resolution: {integrity: sha512-iQcmNA0M4ETMNi0kG/q0h/43wZk7rMeKYrXP7sqKIJbHkTU8Koowgzv+ieR/vWJbOwxx5nDC3UnudZ0aLSu4VA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/keyboardevent-from-electron-accelerator/-/keyboardevent-from-electron-accelerator-2.0.0.tgz}
+    name: keyboardevent-from-electron-accelerator
+    version: 2.0.0
+    dev: false
+
+  registry.npmmirror.com/keyboardevents-areequal@0.2.2:
+    resolution: {integrity: sha512-Nv+Kr33T0mEjxR500q+I6IWisOQ0lK1GGOncV0kWE6n4KFmpcu7RUX5/2B0EUtX51Cb0HjZ9VJsSY3u4cBa0kw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/keyboardevents-areequal/-/keyboardevents-areequal-0.2.2.tgz}
+    name: keyboardevents-areequal
+    version: 0.2.2
+    dev: false
 
   registry.npmmirror.com/keyv@4.5.3:
     resolution: {integrity: sha512-QCiSav9WaX1PgETJ+SpNnx2PRRapJ/oRSXM4VO5OGYGSjrxbKPVFVhB3l2OCbLCk329N8qyAtsJjSjvVBWzEug==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/keyv/-/keyv-4.5.3.tgz}

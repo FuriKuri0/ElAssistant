@@ -1,7 +1,7 @@
 const {mainWindow}= require('./windowManager.cjs');
 const {globalShortcut, screen }  = require('electron')
 const windowManager = require('./windowManager.cjs');
-
+const localShortcut = require('electron-localshortcut');
 const { width: screenWidth } = screen.getPrimaryDisplay().workAreaSize;
    //注册快捷键
     //打开控制台
@@ -33,9 +33,9 @@ const { width: screenWidth } = screen.getPrimaryDisplay().workAreaSize;
     const [x,y]  = mainWindow.window.getPosition();
     mainWindow.window.setPosition(x, y + 10);
   });
-  //最小化
-    // 注册全局快捷键 Shift + S
-    globalShortcut.register('Shift+S', () => {
+  //最小化 mmd
+    // 注册全局快捷键 Shift + H
+    globalShortcut.register('Shift+H', () => {
       // 检查当前窗口的最小化状态
       if (mainWindow.window.isMinimized()) {
         // 如果窗口已最小化，则恢复正常状态
@@ -67,6 +67,11 @@ globalShortcut.register('Shift+C', () => {
   mainWindow.window.focus()
   mainWindow.window.webContents.send('showClock')
 });
+//展示语音输入
+globalShortcut.register('Shift+Y', () => {
+  mainWindow.window.focus()
+  mainWindow.window.webContents.send('showYuyin')
+});
 //显示黑幕
 globalShortcut.register('Shift+B', () => {
   if(!windowManager.mainWindow.mask){
@@ -74,4 +79,21 @@ globalShortcut.register('Shift+B', () => {
   }else{
     windowManager.mainWindow.mask.close()
   }
+});
+//放大缩小黑圈
+globalShortcut.register('Shift+A', () => {
+  mainWindow.mask.webContents.send('toBig')
+
+});
+globalShortcut.register('Shift+D', () => {
+  mainWindow.mask.webContents.send('toSmall')
+  
+});
+globalShortcut.register('Shift+W', () => {
+  mainWindow.mask.webContents.send('toLight')
+
+});
+globalShortcut.register('Shift+S', () => {
+  mainWindow.mask.webContents.send('toDark')
+  
 });

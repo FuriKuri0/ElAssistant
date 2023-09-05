@@ -1,4 +1,4 @@
-const {app,globalShortcut,ipcMain }  = require('electron')
+const {app,globalShortcut,ipcMain,screen }  = require('electron')
 const windowManager = require('./windowManager.cjs');
 let refreshClock
 app.whenReady().then(()=>{
@@ -16,4 +16,9 @@ app.on('will-quit', () => {
   //闹钟刷新
 ipcMain.on('refreshClock',()=>{
   refreshClock()
+  })
+//返回鼠标位置
+  ipcMain.handle('getMousePosition',()=>{
+    const { x, y } = screen.getCursorScreenPoint();
+    return [x,y]
   })

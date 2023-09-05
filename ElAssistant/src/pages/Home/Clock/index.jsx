@@ -52,7 +52,7 @@ export default function Clock() {
                 <div className="underline"></div>
                 <ul className='clockList'>
                   {clockList.map((v,i)=>{
-                    return <li key={i} ><div><ClockCircleOutlined />&nbsp;&nbsp;{v}</div> &nbsp;&nbsp;<DeleteOutlined onClick={()=>deleteClock(i)} className='clockList-delete'/></li>
+                    return <li key={v} ><div><ClockCircleOutlined />&nbsp;&nbsp;{v}</div> &nbsp;&nbsp;<DeleteOutlined onClick={()=>deleteClock(i)} className='clockList-delete'/></li>
                   })}
                 </ul>
         </div>

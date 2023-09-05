@@ -4,11 +4,16 @@ import MMD from './mmd'
 import clock from '../../assets/clock.mp3'
 import music from '../../assets/music.mp3'
 import Clock from './Clock'
+import Yuyin from './Yuyin'
+
 export default function Home() {
   const clockRef = useRef()
   const musicRef = useRef()
   //是否显示clock
   const [showClock,setShowClock] = useState(false)
+  //是否显示Yuyin
+  const [showYuyin,setShowYuyin] = useState(false)
+
   const limit = useRef(1)
   //监听热键
   const init = () => {
@@ -29,9 +34,12 @@ export default function Home() {
     })
     //监听闹钟组件显示
     window.electron.PlayClock(()=>{
-        console.log('到点了')
           clockRef.current.play();
-  })
+    })
+   //监听语音组件显示
+   window.electron.ShowYuyin(()=>{
+    setShowYuyin(preStatus=>!preStatus)
+    })
   }
   //初始化
  useEffect(()=>{
@@ -40,12 +48,14 @@ export default function Home() {
   }
   limit.current++
  },[])
+
   return (
       <div className='Home'>
       <audio ref={clockRef} src={clock}></audio>
       <audio ref={musicRef} src={music} loop={true}></audio>
       <MMD/>
     {showClock?<Clock/>:''}
+    {showYuyin?<Yuyin/>:''}
     </div>
   )
 }

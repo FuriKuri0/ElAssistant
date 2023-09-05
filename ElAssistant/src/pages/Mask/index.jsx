@@ -1,20 +1,32 @@
-import {useState}from 'react'
+import {useEffect, useState,useRef}from 'react'
 import './index.scss'
 export default function Mask() {
-  const [backgroundStyle, setBackgroundStyle] = useState({
-    background: ''
-  });
-  // 监听鼠标移动事件并更新backgroundStyle
-  const handleMouseMove = (e) => {
-    const centerX = e.screenX + 'px';
-    const centerY = e.screenY + 'px';
-    const newBackgroundStyle = {
-      background: `radial-gradient(circle at ${centerX} ${centerY}, rgba(0,0,0,0) 0, rgba(0,0,0,0) 100px,rgba(0,0,0,.8) 100px`
-    };
-    setBackgroundStyle(newBackgroundStyle);
-  };
-
+  const [light,setLight] = useState(0.5)
+  const [r,setR] = useState(100)
+  const [x,setX] = useState(0)
+  const [y,setY] = useState(0)
+  const limit = useRef(1)
+  //监听光圈变化以及亮度变化
+  const beBig = ()=>{
+    setR(pre=>pre+10)
+  }
+  const beSmall = ()=>{
+    setR(pre=>pre>10?pre-10:pre)
+  }
+  const beLight = ()=>{
+    setLight(pre=>pre>=0.9?pre:pre+0.1)
+  }
+  const beDark = ()=>{
+    setLight(pre=>pre<=0?pre:pre-0.1)
+  }
+  useEffect(()=>{
+    if(limit.current===1){
+      window.electronM.ListenMouse(setX,setY)
+      window.electronM.ListenChange(beBig,beSmall,beLight,beDark)
+    }
+    limit.current++
+  },[])
   return (
-    <div onMouseMove={handleMouseMove} className='Mask'  style={backgroundStyle}></div>
+    <div  className='Mask'  style={ {'background': `radial-gradient(circle at ${x}px ${y}px, rgba(0,0,0,0) 0, rgba(0,0,0,0) ${r}px,rgba(0,0,0,${light})  ${r}px`}}></div>
   )
 }

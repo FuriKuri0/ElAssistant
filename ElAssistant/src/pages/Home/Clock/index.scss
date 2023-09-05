@@ -1,4 +1,11 @@
-
+@keyframes addNewClock {
+  from {
+    transform: translateY(-100px); /* 从 -200px 处开始 */
+  }
+  to {
+    transform: translateY(0); /* 移动到 0px 处 */
+  }
+}
 .Clock {
     display: flex;
     position: absolute;
@@ -106,6 +113,7 @@
               padding: 0 20px;
               justify-content: space-between;
               align-items: center;
+              animation: addNewClock 0.3s linear;
               transition: all .3s;
               border-radius: 10px;
               .clockList-delete {

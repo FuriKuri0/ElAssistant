@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
-const {MainStore} = require('./store.cjs')
-const {setClock} = require('./clock.cjs')
+const {MainStore} = require('../store.cjs')
+const {setClock} = require('../clock.cjs')
 contextBridge.exposeInMainWorld(
     'electron',
     {
@@ -13,6 +13,12 @@ contextBridge.exposeInMainWorld(
         //展示闹钟组件
         ShowClock:(callback)=>{
             ipcRenderer.on('showClock',()=>{
+                callback()
+            })
+        },
+         //展示语音组件
+         ShowYuyin:(callback)=>{
+            ipcRenderer.on('showYuyin',()=>{
                 callback()
             })
         },
@@ -39,6 +45,7 @@ contextBridge.exposeInMainWorld(
                     ipcRenderer.send('refreshClock')
                 }
             }
-        }
+        },
+      
     }
   )

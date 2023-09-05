@@ -16,11 +16,11 @@ function createMainWindow() {
         frame:false,
         transparent:true,
         webPreferences:{
-            preload:path.resolve(__dirname,'preload.cjs'),
-            nodeIntegration:true 
+            preload:path.resolve(__dirname,'./preload/preload.cjs'),
+            nodeIntegration:true ,
         }
     })
-    mainWindow.window.loadURL('http://localhost:5173/#/home')
+    mainWindow.window.loadURL('http://localhost:5173')
     //设置窗口比例
     mainWindow.window.setAspectRatio(1)
     // 当窗口关闭时触发的事件
@@ -39,15 +39,12 @@ function createMask() {
         frame:false,
         transparent:true,
         fullscreen: true, // 设置窗口初始全屏
-        webPreferences: {
-          nodeIntegration: true,
-        },
-        // webPreferences:{
-        //     preload:path.resolve(__dirname,'preload.cjs'),
-        //     nodeIntegration:true 
-        // }
+        webPreferences:{
+            preload:path.resolve(__dirname,'./preload/preloadMask.cjs'),
+            nodeIntegration:true 
+        }
     })
-    // mainWindow.mask.setIgnoreMouseEvents(true)
+    mainWindow.mask.setIgnoreMouseEvents(true)
     mainWindow.mask.loadURL('http://localhost:5173/#/mask')
     mainWindow.mask.on('closed', () => {
         // 销毁窗口对象
