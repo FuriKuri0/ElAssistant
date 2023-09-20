@@ -1,0 +1,41 @@
+/**
+ * @see https://www.electron.build/configuration/configuration
+ */
+{
+  appId: "ElAssistant",
+  productName: "哦哈哟",
+  copyright: "Copyright © 2022 ${author}",  // 著作权
+  asar: true, // 开启asar
+  directories: {  // 目录结构和输出目录
+    output: "release/${version}",
+  },
+   "asarUnpack": [
+    "./dist/electron", // 不需要打包到 asar 中的文件，也就是有改动的代码
+    "./dist/renderer",
+    "./package.json"
+  ],
+  // 打包目录名称
+  files: ["dist"],
+  // windows配置
+  win: {
+    target: [
+      {
+        target: "nsis",
+        arch: ["x64"],
+      },
+    ],
+    artifactName: "${productName}-Windows-${version}-Setup.${ext}",
+  },
+  nsis: {
+    "oneClick": false, // 是否一键安装
+    "allowToChangeInstallationDirectory": true, // 允许修改安装目录
+  },
+  mac: {
+    target: ["dmg"],
+    artifactName: "${productName}-Mac-${version}-Installer.${ext}",
+  },
+  linux: {
+    target: ["AppImage"],
+    artifactName: "${productName}-Linux-${version}.${ext}",
+  },
+}

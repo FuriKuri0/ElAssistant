@@ -1,0 +1,38 @@
+.NoteUl{
+    width: 98vw;
+    height: calc(90vh - 40px);
+    overflow: auto;
+    margin-top: 0;
+    li{
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        display: flex;
+        position: relative;
+        background: white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+        transition: all .3s;
+        font-size: 14px;
+        &:hover{
+            cursor: pointer;
+            background: rgb(255, 231, 203);
+        }
+        .Note-title {
+            width: 75%;
+            word-break:keep-all;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        }
+        .Note-delete {
+            position: absolute;
+            right: 25px;
+            top: 12px;
+            transition: all .3s;
+            &:hover{
+                color: skyblue;
+            }
+        }
+    }
+    
+}

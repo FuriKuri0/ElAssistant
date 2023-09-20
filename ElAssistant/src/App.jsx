@@ -1,19 +1,12 @@
-import { useEffect } from 'react'
+import React from 'react'
+import {useRoutes} from 'react-router-dom'
+import routes from './routes'
 import './base.css'
-
 export default function App() {
-  const Click = () => {
-    window.electron.doThing()
-  }
-  useEffect(()=>{
-    window.electron.test((value)=>{
-      console.log(value,'value')
-    })
-  },[])
+  const element = useRoutes(routes)
   return (
-    <div>
-    123
-    </div>
+    <>
+      {element}
+    </>
   )
 }
- 

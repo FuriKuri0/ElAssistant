@@ -1,10 +1,12 @@
-body {
+.Home {
     width: 100vw;
     height:  100vh;
-    background: white;
+    overflow: hidden;
+    border-radius: 100%;
+
 }
 html {
-    -webkit-app-region:drag;
+    /* -webkit-app-region:drag; */
     overflow: hidden;
 }
 

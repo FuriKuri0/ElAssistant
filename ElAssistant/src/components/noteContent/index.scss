@@ -1,0 +1,11 @@
+.noteContent {
+    width: 98vw;
+    height: calc(90vh - 40px);
+    overflow-y: auto;
+    margin-top: 0;
+    .editor {
+        height: 100%;
+        width: 100%;
+    }
+
+}
