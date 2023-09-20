@@ -1,8 +1,35 @@
 import CryptoJS from 'crypto-js';
+import { useCallback,useRef,useEffect } from 'react';
+import {  useDispatch, useSelector } from 'react-redux';
+import {changeKeyAction, setNotesAction,changeStatusAction,changeDetailAction } from '../store/modules/notes';
+
 var API_SECRET = "MDIyYTY3N2NiOTBkNjg5YmM2ZmZmMDIx";
 var API_KEY = "6ec94ede6d3d4f4599f67c465bd219c2";
 const clockPattern = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
-
+//hook 
+//notes相关
+export const useNotes =  () => {
+  const notes = useSelector(state=>state.notes)
+  const dispath = useDispatch()
+  const {allNotes,showDetail,notesDetail,key} = notes
+  const setNotes = (data) => {
+    dispath(setNotesAction(data))
+  }
+  const changeStatus = (state) => {
+    dispath(changeStatusAction(state))
+  }
+  const changeDetail = (key) => {
+    const detail = allNotes.find(v=>v.key===key)
+    dispath(changeDetailAction(detail.content))
+    dispath(changeKeyAction(key)) 
+  }
+  const updateDetail = (key,newDetail) => {
+    
+  }
+  return {
+    key,updateDetail,allNotes,showDetail,setNotes,changeStatus,changeDetail,notesDetail
+  }
+}
 // 验证时钟格式的函数
 export function isValidClockFormat(str) {
   return clockPattern.test(str);
