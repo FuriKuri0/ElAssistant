@@ -1,20 +1,12 @@
 const {mainWindow}= require('./windowManager.cjs');
 const {globalShortcut, screen }  = require('electron')
 const windowManager = require('./windowManager.cjs');
-<<<<<<< HEAD
 let isShow = true
-=======
-const localShortcut = require('electron-localshortcut');
->>>>>>> 76eb1379223877fb856a3d20e474784ff61edffd
 const { width: screenWidth } = screen.getPrimaryDisplay().workAreaSize;
    //注册快捷键
     //打开控制台
     globalShortcut.register('CommandOrControl+Shift+I', function () {
-<<<<<<< HEAD
         mainWindow.note.webContents.openDevTools()
-=======
-        mainWindow.window.webContents.openDevTools()
->>>>>>> 76eb1379223877fb856a3d20e474784ff61edffd
       })
     //移动窗口
      // 注册全局快捷键监听箭头按键
@@ -41,7 +33,6 @@ const { width: screenWidth } = screen.getPrimaryDisplay().workAreaSize;
     const [x,y]  = mainWindow.window.getPosition();
     mainWindow.window.setPosition(x, y + 10);
   });
-<<<<<<< HEAD
   //隐藏 mmd
     // 注册全局快捷键 Shift + H
     globalShortcut.register('Shift+H', () => {
@@ -59,19 +50,6 @@ const { width: screenWidth } = screen.getPrimaryDisplay().workAreaSize;
       //   // 否则，最小化窗口
       //   mainWindow.window.minimize();
       // }
-=======
-  //最小化 mmd
-    // 注册全局快捷键 Shift + H
-    globalShortcut.register('Shift+H', () => {
-      // 检查当前窗口的最小化状态
-      if (mainWindow.window.isMinimized()) {
-        // 如果窗口已最小化，则恢复正常状态
-        mainWindow.window.restore();
-      } else {
-        // 否则，最小化窗口
-        mainWindow.window.minimize();
-      }
->>>>>>> 76eb1379223877fb856a3d20e474784ff61edffd
     });
   //最大化
     // 注册全局快捷键 Shift + L
@@ -100,13 +78,10 @@ globalShortcut.register('Shift+Y', () => {
   mainWindow.window.focus()
   mainWindow.window.webContents.send('showYuyin')
 });
-<<<<<<< HEAD
 //展示计时器
 globalShortcut.register('Shift+T', () => {
   mainWindow.window.webContents.send('showTimeCount')
 });
-=======
->>>>>>> 76eb1379223877fb856a3d20e474784ff61edffd
 //显示黑幕
 globalShortcut.register('Shift+B', () => {
   if(!windowManager.mainWindow.mask){
@@ -115,7 +90,6 @@ globalShortcut.register('Shift+B', () => {
     windowManager.mainWindow.mask.close()
   }
 });
-<<<<<<< HEAD
 //显示note
 globalShortcut.register('Shift+F', () => {
   if(!windowManager.mainWindow.note){
@@ -124,8 +98,6 @@ globalShortcut.register('Shift+F', () => {
     windowManager.mainWindow.note.close()
   }
 });
-=======
->>>>>>> 76eb1379223877fb856a3d20e474784ff61edffd
 //放大缩小黑圈
 globalShortcut.register('Shift+A', () => {
   mainWindow.mask.webContents.send('toBig')

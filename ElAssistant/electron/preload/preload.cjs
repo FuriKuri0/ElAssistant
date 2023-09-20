@@ -1,9 +1,4 @@
 const { contextBridge, ipcRenderer } = require('electron');
-<<<<<<< HEAD
-=======
-const {MainStore} = require('../store.cjs')
-const {setClock} = require('../clock.cjs')
->>>>>>> 76eb1379223877fb856a3d20e474784ff61edffd
 contextBridge.exposeInMainWorld(
     'electron',
     {
@@ -31,7 +26,6 @@ contextBridge.exposeInMainWorld(
                 callback()
             })
         },
-<<<<<<< HEAD
             //计时器
             ShowTimeCount:(callback)=>{
                 ipcRenderer.on('showTimeCount',()=>{
@@ -51,26 +45,6 @@ contextBridge.exposeInMainWorld(
                 ipcRenderer.send('storeDelete',key)
         },
     }
-=======
-        //数据存储
-        Store:{
-            get:(key)=>{
-               return MainStore.get(key)
-            },
-            set:(key,data)=>{
-                MainStore.set(key,data)
-                if(key==='clock'){
-                    ipcRenderer.send('refreshClock')
-                }
-            },
-            delete:(key)=>{
-                MainStore.delete(key)
-                if(key==='clock'){
-                    ipcRenderer.send('refreshClock')
-                }
-            }
-        },
->>>>>>> 76eb1379223877fb856a3d20e474784ff61edffd
       
     }
   )
