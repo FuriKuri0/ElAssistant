@@ -1,7 +1,32 @@
 const { contextBridge, ipcRenderer } = require('electron');
+<<<<<<< HEAD
 contextBridge.exposeInMainWorld(
     'electronM',
     {
+=======
+const {MainStore} = require('../store.cjs')
+contextBridge.exposeInMainWorld(
+    'electronM',
+    {
+        //数据存储
+        Store:{
+            get:(key)=>{
+               return MainStore.get(key)
+            },
+            set:(key,data)=>{
+                MainStore.set(key,data)
+                if(key==='clock'){
+                    ipcRenderer.send('refreshClock')
+                }
+            },
+            delete:(key)=>{
+                MainStore.delete(key)
+                if(key==='clock'){
+                    ipcRenderer.send('refreshClock')
+                }
+            }
+        },
+>>>>>>> 76eb1379223877fb856a3d20e474784ff61edffd
         //监听鼠标移动
         ListenMouse:(setX,setY)=>{
             setInterval(async()=>{
