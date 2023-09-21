@@ -3,7 +3,8 @@ const initialState = {
 	allNotes:[],
 	notesDetail:'',
 	key:'',
-	showDetail:false
+	showDetail:false,
+	label:''
 }
 // 定义切片
 const countSlice = createSlice({
@@ -23,13 +24,16 @@ const countSlice = createSlice({
 		},
 		changeKey(state, action){
 			state.key = action.payload
-		}
+		},
+		changeLabel(state, action){
+			state.label = action.payload
+		},
 	}
 })
 
 
 
-export const {changeKey:changeKeyAction,changeDetail:changeDetailAction, changeStatus: changeStatusAction, setNotes: setNotesAction } = countSlice.actions
+export const {changeLabel:changeLabelAction,changeKey:changeKeyAction,changeDetail:changeDetailAction, changeStatus: changeStatusAction, setNotes: setNotesAction } = countSlice.actions
 
 export default countSlice.reducer
 

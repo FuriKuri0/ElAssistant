@@ -1,44 +1,29 @@
 import './index.scss'
-import * as monaco from 'monaco-editor'
-import { useEffect ,useRef} from 'react'
+import MonacoEditor from '../MonacoEditor'
 import { useNotes } from '../../utils'
-import { updateDetail } from '../../request/api'
-let editorInstance
 export default function NoteContent() {
-  const editorRef = useRef()
-  const {notesDetail,key} = useNotes()
-  useEffect(()=>{
-    const editorContainer = document.querySelector('.editor');
-      editorInstance = monaco.editor.create(editorRef.current, {
-        value:  notesDetail||'Hello, World!',
-        theme: 'transparentTheme',
-        language: 'javascript',
-        fontSize: 14
-      })
-      editorInstance.onDidChangeModelContent(() => {
-        const editorValue = editorInstance.getValue()
-        updateDetail(key,editorValue)
-      })
-      const resizeObserver = new ResizeObserver(entries => {
-        for (const entry of entries) {
-          if (entry.target === editorContainer) {
-            // 根据容器的高度来设置 Monaco Editor 的高度
-            editorInstance.layout();
-          }
-        }
-      });
-  
-      // 开始监听容器大小的变化
-      resizeObserver.observe(editorContainer);
-    return(()=>{
-      if (editorInstance) {
-        resizeObserver.disconnect();
-        editorInstance.dispose()
-      }
-    })
-  },[])
+  const {changeStatus,getAllNotes} = useNotes()
+  const back = ()=>{
+    changeStatus(false)
+    getAllNotes()
+  }
   return (
-    <div className='noteContent'><div className="editor" ref={editorRef}></div>
+    <div className='noteContent'>
+      <button onClick={back}  className="backBtn">
+  <div className="backBtn-box">
+    <span className="backBtn-elem">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 40">
+        <path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"></path>
+      </svg>
+    </span>
+    <span className="backBtn-elem">
+      <svg viewBox="0 0 46 40">
+        <path d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"></path>
+      </svg>
+    </span>
+  </div>
+</button>
+      <MonacoEditor></MonacoEditor>
     </div>
   )
 }

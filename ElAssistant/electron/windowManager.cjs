@@ -68,8 +68,8 @@ function createNote() {
   mainWindow.note =new BrowserWindow({
       width:500, 
       height:height/4,
-      y:1,
-      x:width/2,
+      x:width-1050,
+      y:height-800,
       alwaysOnTop:true,
       frame:false,
       transparent:true,
