@@ -26,6 +26,8 @@ export const useNotes =  () => {
     const detail = allNotes.find(v=>v.key===key)
     dispath(changeDetailAction(detail.content))
     dispath(changeKeyAction(key)) 
+    console.log(handleLabel(detail.label))
+    changeLabel(handleLabel(detail.label))
   }
   const updateDetail = (key,newDetail) => {
     dispath(changeDetailAction(newDetail))
